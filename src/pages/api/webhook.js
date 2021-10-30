@@ -11,7 +11,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 const fullfillOrder = async (session) => {
-  // console.log("fullfilloerder", session)
   return app
     .firestore()
     .collection("users")
@@ -46,6 +45,8 @@ export default async (req, res) => {
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
+
+      console.log("Session Webhooks", session.metadata);
 
       return fullfillOrder(session)
         .then(() => res.status(200))
