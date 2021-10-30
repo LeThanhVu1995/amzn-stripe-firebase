@@ -26,15 +26,15 @@ function Checkout() {
     console.log(checkoutSession);
 
     // Redirect usere/customer to Stripe Checkout
-    // const result = await stripe.redirectToCheckout({
-    //   sessionId: checkoutSession.data.id,
-    // });
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
 
-    // console.log(result);
+    console.log(result);
 
-    // if (result.error) {
-    //   alert(result.error.message);
-    // }
+    if (result.error) {
+      alert(result.error.message);
+    }
   };
 
   return (
